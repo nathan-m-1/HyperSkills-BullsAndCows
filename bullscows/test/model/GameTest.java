@@ -5,15 +5,30 @@ import bullscows.model.GuessResult;
 
 public class GameTest {
 
+    private static int passed;
+    private static int failed;
+
     public static void main(String[] args) {
 
         System.out.println("Initiation Test...");
 
-        shouldReturnOneCowAndTheSecretCode();
+        runTest(GameTest::shouldReturnOneCowAndTheSecretCode);
 
+        System.out.println();
         System.out.println("Test Complete.");
-        System.out.println("All tests passed!.");
+        System.out.println("Passed: " + passed);
+        System.out.println("Failed: " + failed);
 
+    }
+
+    private static void runTest(Runnable test){
+        try {
+            test.run();
+            passed++;
+        }catch (Throwable e){
+            failed++;
+            System.out.println("FAILED: " + e.getMessage());
+        }
     }
 
     private static void shouldReturnOneCowAndTheSecretCode(){
