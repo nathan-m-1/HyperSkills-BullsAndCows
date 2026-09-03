@@ -1,17 +1,22 @@
 package bullscows;
 
+import bullscows.application.GameService;
+import bullscows.console.ConsoleGame;
+import bullscows.console.ConsoleInput;
+import bullscows.controller.ConsoleGameController;
+import bullscows.model.BullsAndCowsGame;
+
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("The secret code is prepared: ****.");
-        System.out.println();
-        System.out.println("Turn 1. Answer:");
-        System.out.println("1234");
-        System.out.println("Grade: None.");
-        System.out.println();
-        System.out.println("Turn 2. Answer:");
-        System.out.println("9876");
-        System.out.println("Grade: 4 bulls.");
-        System.out.println("Congrats! The secret code is 9876.");
+        BullsAndCowsGame game = new BullsAndCowsGame();
+
+        GameService service = new GameService(game);
+
+        ConsoleGameController controller = new ConsoleGameController(service);
+        ConsoleInput input = new ConsoleInput();
+
+        ConsoleGame consoleGame = new ConsoleGame(controller, input);
+        consoleGame.start();
     }
 }

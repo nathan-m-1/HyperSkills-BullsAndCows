@@ -1,4 +1,4 @@
 package bullscows.model;
 
-public record GuessResult(Integer cows, Integer bulls, String secret) {
+public record GuessResult(Integer bulls, Integer cows, String secret) {
 }

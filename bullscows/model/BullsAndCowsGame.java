@@ -1,6 +1,6 @@
 package bullscows.model;
 
-public class Game {
+public class BullsAndCowsGame {
 
     private static final String SECRET_CODE = "9305";
 
@@ -14,6 +14,6 @@ public class Game {
                 cows++;
             }
         }
-        return new GuessResult(cows, bulls, "9305");
+        return new GuessResult(bulls, cows, "9305");
     }
 }
