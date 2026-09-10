@@ -14,4 +14,8 @@ public class GameService {
     public GuessResult guessCode(String guess) {
         return game.guessCode(guess);
     }
+
+    public String generateRandomSecretCode(int length) {
+        return game.generateRandomSecretCode(length);
+    }
 }

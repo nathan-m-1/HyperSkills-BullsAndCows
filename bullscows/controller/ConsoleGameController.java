@@ -16,4 +16,8 @@ public class ConsoleGameController {
 
         return new ResponseDto(result.bulls(), result.cows(), result.secret());
     }
+
+    public String generateRandomSecretCode(int length) {
+        return gameService.generateRandomSecretCode(length);
+    }
 }
