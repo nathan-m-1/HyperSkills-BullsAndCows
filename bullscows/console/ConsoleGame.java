@@ -13,10 +13,20 @@ public class ConsoleGame {
         this.input = input;
     }
 
+//    public void start() {
+//        String guess = input.readGuess();
+//        ResponseDto responseDto = controller.makeGuessCode(guess);
+//        renderResponse(responseDto);
+//    }
+
     public void start() {
-        String guess = input.readGuess();
-        ResponseDto responseDto = controller.makeGuessCode(guess);
-        renderResponse(responseDto);
+        int codeLength = input.readSecretCodeLength();
+        if (codeLength >= 10) {
+            System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
+            return;
+        }
+        String code = controller.generateRandomSecretCode(codeLength);
+        printCodeGeneratedResult(code);
     }
 
     private void renderResponse(ResponseDto responseDto) {
@@ -41,5 +51,9 @@ public class ConsoleGame {
 
         grade.append(". The secret code is ").append(responseDto.secret()).append(".");
         return grade.toString();
+    }
+
+    private void printCodeGeneratedResult(String code){
+        System.out.printf("The random secret number is: %s", code);
     }
 }

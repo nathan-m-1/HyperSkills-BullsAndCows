@@ -1,4 +1,4 @@
-package bullscows.test.model;
+package bullscows.owntest.model;
 
 import bullscows.model.BullsAndCowsGame;
 
