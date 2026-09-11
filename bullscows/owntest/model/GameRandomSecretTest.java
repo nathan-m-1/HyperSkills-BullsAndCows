@@ -10,7 +10,7 @@ public class GameRandomSecretTest {
     private static int passed;
     private static int failed;
 
-    public static void main(String[] args) {
+    void main() {
 
         System.out.println("Initiation Test...");
 
