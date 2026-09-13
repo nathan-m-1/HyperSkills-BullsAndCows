@@ -5,9 +5,12 @@ import bullscows.console.ConsoleGame;
 import bullscows.console.ConsoleInput;
 import bullscows.controller.ConsoleGameController;
 import bullscows.model.BullsAndCowsGame;
+import bullscows.model.SecretNumberGenerator;
 
 public class Main {
     public static void main(String[] args) {
+
+        int lentghCode =
 
         BullsAndCowsGame game = new BullsAndCowsGame();
 

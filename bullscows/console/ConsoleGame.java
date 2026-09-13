@@ -13,23 +13,31 @@ public class ConsoleGame {
         this.input = input;
     }
 
-//    public void start() {
-//        String guess = input.readGuess();
-//        ResponseDto responseDto = controller.makeGuessCode(guess);
-//        renderResponse(responseDto);
-//    }
-
     public void start() {
+
+        System.out.println("Please, enter the secret code's length:");
         int codeLength = input.readSecretCodeLength();
-        if (codeLength >= 10) {
-            System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
-            return;
+        System.out.println("Okay, let's start a game!");
+        controller.generateRandomSecretCode(codeLength);
+
+        ResponseDto responseDto = new ResponseDto(0, 0);
+        int turn = 0;
+        while(responseDto.bulls() != codeLength){
+            System.out.printf("Turn %d:%n", turn);
+            String guess = input.readGuess();
+            if (codeLength >= 10) {
+                System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
+                continue;
+            }
+            responseDto = controller.makeGuessCode(guess);
+            renderGuessResponse(responseDto);
+            turn++;
         }
-        String code = controller.generateRandomSecretCode(codeLength);
-        printCodeGeneratedResult(code);
+
+        System.out.println("Congratulations! You guessed the secret code.");
     }
 
-    private void renderResponse(ResponseDto responseDto) {
+    private void renderGuessResponse(ResponseDto responseDto) {
         System.out.println(buildGradeMessage(responseDto));
     }
 
@@ -48,12 +56,7 @@ public class ConsoleGame {
         if(bulls == 0 && cows == 0){
             grade.append("None");
         }
-
-        grade.append(". The secret code is ").append(responseDto.secret()).append(".");
         return grade.toString();
     }
 
-    private void printCodeGeneratedResult(String code){
-        System.out.printf("The random secret number is: %s", code);
-    }
 }

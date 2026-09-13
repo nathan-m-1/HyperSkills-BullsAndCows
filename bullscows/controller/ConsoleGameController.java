@@ -14,10 +14,10 @@ public class ConsoleGameController {
     public ResponseDto makeGuessCode(String guess) {
         GuessResult result = gameService.guessCode(guess);
 
-        return new ResponseDto(result.bulls(), result.cows(), result.secret());
+        return new ResponseDto(result.bulls(), result.cows());
     }
 
-    public String generateRandomSecretCode(int length) {
-        return gameService.generateRandomSecretCode(length);
+    public void generateRandomSecretCode(int length) {
+        gameService.generateRandomSecretCode(length);
     }
 }
