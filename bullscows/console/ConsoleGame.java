@@ -15,31 +15,26 @@ public class ConsoleGame {
 
     public void start() {
 
-        int codeLength = initiateGame();
+        System.out.println("Please, enter the secret code's length:");
+        int codeLength = input.readSecretCodeLength();
+        if (codeLength > 10) {
+            System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
+            return;
+        }
 
+        System.out.println("Okay, let's start a game!");
+        controller.starGame(codeLength);
         ResponseDto responseDto = new ResponseDto(0, 0);
         int turn = 1;
         while(responseDto.bulls() != codeLength){
             System.out.printf("Turn %d:%n", turn);
             String guess = input.readGuess();
-            if (codeLength >= 10) {
-                System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
-                continue;
-            }
             responseDto = controller.makeGuessCode(guess);
             renderGuessResponse(responseDto);
             turn++;
         }
 
         System.out.println("Congratulations! You guessed the secret code.");
-    }
-
-    private int initiateGame() {
-        System.out.println("Please, enter the secret code's length:");
-        int codeLength = input.readSecretCodeLength();
-        controller.starGame(codeLength);
-        System.out.println("Okay, let's start a game!");
-        return codeLength;
     }
 
     private void renderGuessResponse(ResponseDto responseDto) {
