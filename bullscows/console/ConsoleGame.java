@@ -15,13 +15,10 @@ public class ConsoleGame {
 
     public void start() {
 
-        System.out.println("Please, enter the secret code's length:");
-        int codeLength = input.readSecretCodeLength();
-        System.out.println("Okay, let's start a game!");
-        controller.generateRandomSecretCode(codeLength);
+        int codeLength = initiateGame();
 
         ResponseDto responseDto = new ResponseDto(0, 0);
-        int turn = 0;
+        int turn = 1;
         while(responseDto.bulls() != codeLength){
             System.out.printf("Turn %d:%n", turn);
             String guess = input.readGuess();
@@ -35,6 +32,14 @@ public class ConsoleGame {
         }
 
         System.out.println("Congratulations! You guessed the secret code.");
+    }
+
+    private int initiateGame() {
+        System.out.println("Please, enter the secret code's length:");
+        int codeLength = input.readSecretCodeLength();
+        controller.starGame(codeLength);
+        System.out.println("Okay, let's start a game!");
+        return codeLength;
     }
 
     private void renderGuessResponse(ResponseDto responseDto) {
