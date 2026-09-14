@@ -13,11 +13,10 @@ public class ConsoleGameController {
 
     public ResponseDto makeGuessCode(String guess) {
         GuessResult result = gameService.guessCode(guess);
-
         return new ResponseDto(result.bulls(), result.cows());
     }
 
-    public void generateRandomSecretCode(int length) {
-        gameService.generateRandomSecretCode(length);
+    public void starGame(int length) {
+        gameService.startGame(length);
     }
 }
