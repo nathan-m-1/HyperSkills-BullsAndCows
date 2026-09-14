@@ -2,26 +2,24 @@ package bullscows.application;
 
 import bullscows.model.BullsAndCowsGame;
 import bullscows.model.GuessResult;
+import bullscows.model.SecretNumberGenerator;
 
 public class  GameService {
 
-    private final BullsAndCowsGame game;
+    private BullsAndCowsGame game;
     private final SecretNumberGenerator generator;
 
-    public GameService(BullsAndCowsGame game) {
-        this.game = game;
+    public GameService(SecretNumberGenerator generator) {
+        this.generator = generator;
     }
 
     public void startGame(int length) {
-        String secretCode = generator.generate();
-        game = new BullsAndCowsGame()
+        String secretCode = generator.generate(length);
+        game = new BullsAndCowsGame(secretCode);
     }
 
     public GuessResult guessCode(String guess) {
         return game.guessCode(guess);
     }
 
-    public void generateRandomSecretCode(int length) {
-        game.generateRandomSecretCode(length);
-    }
 }
