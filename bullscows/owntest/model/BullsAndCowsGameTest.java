@@ -43,8 +43,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnOneCow(){
         int expectedResult = 1;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
-        game.generateRandomSecretCode(4);
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("1234");
         if(!result.cows().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d cows but got %d", expectedResult, result.cows()));
@@ -53,7 +52,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnThreeCows(){
         int expectedResult = 3;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("0000");
         if(!result.cows().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d cows but got %d", expectedResult, result.cows()));
@@ -62,7 +61,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnFourCows(){
         int expectedResult = 4;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("3059");
         if(!result.cows().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d cows but got %d", expectedResult, result.cows()));
@@ -71,7 +70,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnOneBull(){
         int expectedResult = 1;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("9777");
         if(!result.bulls().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d bull but got %d", expectedResult, result.bulls()));
@@ -80,7 +79,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnThreeBulls(){
         int expectedResult = 3;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("9306");
         if(!result.bulls().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d bull but got %d", expectedResult, result.bulls()));
@@ -89,7 +88,7 @@ public class BullsAndCowsGameTest {
 
     private void shouldReturnFourBulls(){
         int expectedResult = 4;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("9305");
         if(!result.bulls().equals(expectedResult)){
             throw new AssertionError(String.format("Expected %d bull but got %d", expectedResult, result.bulls()));
@@ -99,7 +98,7 @@ public class BullsAndCowsGameTest {
     private void shouldReturnOneCowAndOneBull(){
         int expectedCowsResult = 1;
         int expectedBullsResult = 1;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("9883");
         if(!result.bulls().equals(expectedBullsResult) && !result.cows().equals(expectedCowsResult)){
             throw new AssertionError(String.format("Expected %d bulls and %d cows but got %d bulls and %d cows",
@@ -110,7 +109,7 @@ public class BullsAndCowsGameTest {
     private void shouldReturnNone(){
         int expectedCowsResult = 0;
         int expectedBullsResult = 0;
-        BullsAndCowsGame game = new BullsAndCowsGame(new SecretNumberGenerator());
+        BullsAndCowsGame game = new BullsAndCowsGame("9305");
         GuessResult result = game.guessCode("1111");
         if(!result.bulls().equals(expectedBullsResult) && !result.cows().equals(expectedCowsResult)){
             throw new AssertionError(String.format("Expected %d bulls and %d cows but got %d bulls and %d cows",
