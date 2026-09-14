@@ -10,11 +10,9 @@ import bullscows.model.SecretNumberGenerator;
 public class Main {
     public static void main(String[] args) {
 
-        int lentghCode =
+        SecretNumberGenerator generator = new SecretNumberGenerator();
 
-        BullsAndCowsGame game = new BullsAndCowsGame();
-
-        GameService service = new GameService(game);
+        GameService service = new GameService(generator);
 
         ConsoleGameController controller = new ConsoleGameController(service);
         ConsoleInput input = new ConsoleInput();
