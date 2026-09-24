@@ -25,6 +25,8 @@ public class SecretNumberGeneratorTest {
         test.runTest(test::shouldNotRepeatCharacters, "shouldNotRepeatCharacters");
         test.runTest(test::shouldReturnOnlyLettersAndDigits, "shouldReturnOnlyLettersAndDigits");
         test.runTest(test::codeLengthNotGreaterThanLengthOfPossibleSymbols, "codeLengthNotGreaterThanLengthOfPossibleSymbols");
+        test.runTest(test::shouldReturnOnlyDigits, "shouldReturnOnlyDigits");
+        test.runTest(test::shouldReturnOnlyZeroAsSecretCode, "shouldReturnOnlyZeroAsSecretCode");
 
         System.out.println();
         System.out.println("Test Complete.");
@@ -66,7 +68,7 @@ public class SecretNumberGeneratorTest {
         String secretCode = secretNumberGenerator.generate(11, 11);
 
         if(!secretCode.matches("[a-z0-9]+")){
-            throw new AssertionError(String.format("Expected letters and numbers but got %s", secretCode));
+            throw new AssertionError(String.format("Expected letters and digits but got %s", secretCode));
         }
     }
 
@@ -83,6 +85,22 @@ public class SecretNumberGeneratorTest {
 
         if(exceptionThrown == null){
             throw new AssertionError(String.format("Expected IllegalArgumentException, but not thrown and got the code: %s", secretCode));
+        }
+    }
+
+    private void shouldReturnOnlyDigits(){
+        String secretCode = secretNumberGenerator.generate(5, 10);
+
+        if(!secretCode.matches("[0-9]+")){
+            throw new AssertionError(String.format("Expected only digits but got %s", secretCode));
+        }
+    }
+
+    private void shouldReturnOnlyZeroAsSecretCode(){
+        String secretCode = secretNumberGenerator.generate(1, 1);
+
+        if(!secretCode.equals("0")){
+            throw new AssertionError(String.format("Expected 0 as the secret code but got %s", secretCode));
         }
     }
 }

@@ -21,7 +21,8 @@ public class ConsoleGame {
         int symbolsLength = input.readInput();
 
         controller.starGame(codeLength, symbolsLength);
-        System.out.printf("The secret is prepared: %s (0-9, a-f).%n", "*".repeat(codeLength));
+        StringBuilder range = buildRange(codeLength, symbolsLength);
+        System.out.printf("The secret is prepared: %s %s.%n", "*".repeat(codeLength), range);
         System.out.println("Okay, let's start a game!");
         ResponseDto responseDto = new ResponseDto(0, 0);
         int turn = 1;
@@ -34,6 +35,21 @@ public class ConsoleGame {
         }
 
         System.out.println("Congratulations! You guessed the secret code.");
+    }
+
+    private static StringBuilder buildRange(int codeLength, int symbolsLength) {
+        StringBuilder range = new StringBuilder();
+        range.append("(0");
+        if(symbolsLength <= 1){
+            range.append(")");
+        } else if(symbolsLength <= 10){
+            range.append("-").append(symbolsLength - 1).append(")");
+        } else if(symbolsLength == 11){
+            range.append("-").append(9).append(", ").append("a").append(")");
+        } else {
+            range.append("-").append(9).append(", ").append("a").append("-").append((char)('a' + (symbolsLength - 10) - 1)).append(")");
+        }
+        return range;
     }
 
     private void renderGuessResponse(ResponseDto responseDto) {
