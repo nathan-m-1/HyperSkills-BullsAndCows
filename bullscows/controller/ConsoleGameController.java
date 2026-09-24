@@ -16,7 +16,7 @@ public class ConsoleGameController {
         return new ResponseDto(result.bulls(), result.cows());
     }
 
-    public void starGame(int length) {
-        gameService.startGame(length);
+    public void starGame(int length, int symbolsLength) {
+        gameService.startGame(length, symbolsLength);
     }
 }

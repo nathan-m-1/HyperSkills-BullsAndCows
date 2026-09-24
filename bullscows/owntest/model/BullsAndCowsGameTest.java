@@ -2,14 +2,13 @@ package bullscows.owntest.model;
 
 import bullscows.model.BullsAndCowsGame;
 import bullscows.model.GuessResult;
-import bullscows.model.SecretNumberGenerator;
 
 public class BullsAndCowsGameTest {
 
     private static int passed;
     private static int failed;
 
-    public static void main(String[] args) {
+    void main() {
         
         BullsAndCowsGameTest test = new BullsAndCowsGameTest(); 
 

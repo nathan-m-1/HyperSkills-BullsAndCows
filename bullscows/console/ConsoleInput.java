@@ -10,15 +10,14 @@ public class ConsoleInput {
         return scanner.nextLine();
     }
 
-    public int readSecretCodeLength() {
+    public int readInput() {
         String input = scanner.nextLine();
-        int length;
+        int number;
         try {
-            length = Integer.parseInt(input);
+            number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }
-
-        return length;
+        return number;
     }
 }

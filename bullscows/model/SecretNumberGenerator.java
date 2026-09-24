@@ -4,13 +4,20 @@ import java.util.Random;
 
 public class SecretNumberGenerator {
 
-    public String generate(int length) {
+    private static final String SYMBOLS = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    public String generate(int length, int lengthPossibleSymbols) {
+
+        if(length > lengthPossibleSymbols){
+            throw new IllegalArgumentException("The length of the secret number should be less than or equal of length of the symbols");
+        }
+
         StringBuilder secretCode = new StringBuilder();
         Random random = new Random();
         while (secretCode.length() < length) {
-            int digit = random.nextInt(10);
-            if(secretCode.indexOf(String.valueOf(digit)) == -1) {
-                secretCode.append(digit);
+            char character = SYMBOLS.charAt(random.nextInt(SYMBOLS.length()));
+            if(secretCode.indexOf(String.valueOf(character)) == -1) {
+                secretCode.append(character);
             }
         }
         return secretCode.toString();

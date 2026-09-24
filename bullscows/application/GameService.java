@@ -13,8 +13,8 @@ public class  GameService {
         this.generator = generator;
     }
 
-    public void startGame(int length) {
-        String secretCode = generator.generate(length);
+    public void startGame(int length, int symbolsLength) {
+        String secretCode = generator.generate(length, symbolsLength);
         game = new BullsAndCowsGame(secretCode);
     }
 

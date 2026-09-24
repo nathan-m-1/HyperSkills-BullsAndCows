@@ -15,15 +15,14 @@ public class ConsoleGame {
 
     public void start() {
 
-        System.out.println("Please, enter the secret code's length:");
-        int codeLength = input.readSecretCodeLength();
-        if (codeLength > 10) {
-            System.out.printf("Error: can't generate a secret number with a length of %d because there aren't enough unique digits.", codeLength);
-            return;
-        }
+        System.out.println("Input the length of the secret code:");
+        int codeLength = input.readInput();
+        System.out.println("Input the number of possible symbols in the code:");
+        int symbolsLength = input.readInput();
 
+        controller.starGame(codeLength, symbolsLength);
+        System.out.printf("The secret is prepared: %s (0-9, a-f).%n", "*".repeat(codeLength));
         System.out.println("Okay, let's start a game!");
-        controller.starGame(codeLength);
         ResponseDto responseDto = new ResponseDto(0, 0);
         int turn = 1;
         while(responseDto.bulls() != codeLength){
