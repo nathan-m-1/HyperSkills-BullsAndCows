@@ -16,7 +16,7 @@ public class SecretNumberGeneratorTest {
         secretNumberGenerator = new SecretNumberGenerator();
     }
 
-    public static void main(String[] args) {
+    void main(String[] args) {
         SecretNumberGeneratorTest test = new SecretNumberGeneratorTest();
 
         System.out.println("Initiation Test...");

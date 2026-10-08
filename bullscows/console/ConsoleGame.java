@@ -20,7 +20,15 @@ public class ConsoleGame {
         int symbolsLength = 0;
         try {
             codeLength = input.readCodeLength();
+            if (codeLength <= 0) {
+                System.out.println("Error: zero length");
+                return;
+            }
             symbolsLength = input.readSymbolsLength();
+            if (symbolsLength <= 0) {
+                System.out.println("Error: zero length");
+                return;
+            }
         } catch (Exception e){
             // Already handled
             return;

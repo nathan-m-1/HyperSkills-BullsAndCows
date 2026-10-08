@@ -10,6 +10,10 @@ public class SecretNumberGenerator {
 
     public String generate(int length, int lengthSymbols) {
 
+        if(length <= 0 || lengthSymbols <= 0){
+            throw new IllegalArgumentException(ErrorCode.ZERO_LENGTH.name());
+        }
+
         if(length > lengthSymbols){
             throw new IllegalArgumentException(ErrorCode.LENGTH_SYMBOLS_GREATER_THAN_CODE_LENGTH.name());
         }

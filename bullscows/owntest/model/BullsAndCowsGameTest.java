@@ -8,7 +8,7 @@ public class BullsAndCowsGameTest {
     private static int passed;
     private static int failed;
 
-    public static void main(String[] args) {
+    void main(String[] args) {
         
         BullsAndCowsGameTest test = new BullsAndCowsGameTest(); 
 
