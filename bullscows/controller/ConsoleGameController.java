@@ -16,7 +16,14 @@ public class ConsoleGameController {
         return new ResponseDto(result.bulls(), result.cows());
     }
 
-    public void starGame(int length, int symbolsLength) {
-        gameService.startGame(length, symbolsLength);
+    public Result<Void> starGame(int length, int symbolsLength) {
+        try{
+            gameService.startGame(length, symbolsLength);
+        } catch (Exception e){
+            ErrorCode errorCode = ErrorCode.valueOf(e.getMessage());
+            return new Result<>(null, errorCode , errorCode.getMessage());
+        }
+
+        return new Result<>(null, null, null);
     }
 }

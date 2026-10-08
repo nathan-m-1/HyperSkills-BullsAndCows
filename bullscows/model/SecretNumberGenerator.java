@@ -1,18 +1,24 @@
 package bullscows.model;
 
+import bullscows.controller.ErrorCode;
+
 import java.util.Random;
 
 public class SecretNumberGenerator {
 
     private static final String SYMBOLS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
-    public String generate(int length, int lengthPossibleSymbols) {
+    public String generate(int length, int lengthSymbols) {
 
-        if(length > lengthPossibleSymbols){
-            throw new IllegalArgumentException("The length of the secret number should be less than or equal of length of the symbols");
+        if(length > lengthSymbols){
+            throw new IllegalArgumentException(ErrorCode.LENGTH_SYMBOLS_GREATER_THAN_CODE_LENGTH.name());
         }
 
-        String rangeSymbols = SYMBOLS.substring(0, lengthPossibleSymbols);
+        if(lengthSymbols > SYMBOLS.length()){
+            throw new IllegalArgumentException(ErrorCode.LENGTH_SYMBOLS_GREATER_THAN_POSSIBLE_SYMBOLS.name());
+        }
+
+        String rangeSymbols = SYMBOLS.substring(0, lengthSymbols);
         StringBuilder secretCode = new StringBuilder();
         Random random = new Random();
         while (secretCode.length() < length) {

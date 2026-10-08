@@ -2,6 +2,7 @@ package bullscows.console;
 
 import bullscows.controller.ConsoleGameController;
 import bullscows.controller.ResponseDto;
+import bullscows.controller.Result;
 
 public class ConsoleGame {
 
@@ -15,13 +16,23 @@ public class ConsoleGame {
 
     public void start() {
 
-        System.out.println("Input the length of the secret code:");
-        int codeLength = input.readInput();
-        System.out.println("Input the number of possible symbols in the code:");
-        int symbolsLength = input.readInput();
+        int codeLength = 0;
+        int symbolsLength = 0;
+        try {
+            codeLength = input.readCodeLength();
+            symbolsLength = input.readSymbolsLength();
+        } catch (Exception e){
+            // Already handled
+            return;
+        }
 
-        controller.starGame(codeLength, symbolsLength);
-        StringBuilder range = buildRange(codeLength, symbolsLength);
+        Result<Void> result = controller.starGame(codeLength, symbolsLength);
+        if(!result.isSuccess()){
+            System.out.println(result.message());
+            return;
+        }
+
+        StringBuilder range = buildRange(symbolsLength);
         System.out.printf("The secret is prepared: %s %s.%n", "*".repeat(codeLength), range);
         System.out.println("Okay, let's start a game!");
         ResponseDto responseDto = new ResponseDto(0, 0);
@@ -37,7 +48,7 @@ public class ConsoleGame {
         System.out.println("Congratulations! You guessed the secret code.");
     }
 
-    private static StringBuilder buildRange(int codeLength, int symbolsLength) {
+    private static StringBuilder buildRange(int symbolsLength) {
         StringBuilder range = new StringBuilder();
         range.append("(0");
         if(symbolsLength <= 1){
